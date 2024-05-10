@@ -30,7 +30,7 @@ void	search_and_replace(char *s, char a, char b)
 
 int main(int argc, char *argv[])
 {
-	// argc 1 is te name of the program output
+	// argc 1 is the name of the program output
 	if (argc == 4)
 	{
 		// verify the length of argc 3 and 4 to check if it's a 1 character string
