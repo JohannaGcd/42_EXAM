@@ -22,14 +22,15 @@ int	is_pal(const char *str, int start, int len)
 	while (i < (len / 2))
 	{
 		if (str[start + i] != str[start + len - 1 - i])
-			return ((0)i++);
+			return (0);
+		i++;
 	}
 	return (1);
 }
 
 int	main(int argc, char *argv[])
 {
-	char	*str;
+	char		*str;
 	int		len;
 	int		i;
 	int		start;
