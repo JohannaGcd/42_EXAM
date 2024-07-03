@@ -1,32 +1,41 @@
 #include <unistd.h>
 
-void	ft_putnbr(int i)
-{
-	char	str[10] = "0123456789";
-
-	if (i > 9)
-		ft_putnbr(i / 10);
-	write(1, &str[i % 10], 1);
-}
-
-int	main(void)
+void	expand_str(char *str)
 {
 	int	i;
+	int	flag;
 
-	i = 1;
-	while (i <= 100)
+	i = 0;
+	flag = 0;
+	// skip spaces at the beginning
+	while ((str[i] == ' ' || str[i] == '\t') && (str[i] != '\0'))
+		i++;
+	// continue until the string ends (ie. '\0')
+	while (str[i])
 	{
-		if ((i % 3 == 0) && (i % 5 == 0))
-			write(1, "fizzbuzz", 8);
-		else if (i % 3 == 0)
-			write(1, "fizz", 4);
-		else if (i % 5 == 0)
-			write(1, "buzz", 4);
-		else
-			ft_putnbr(i);
-		write(1, "\n", 1);
+		// if encounter a space, flag = 1
+		if (str[i] == ' ' || str[i] == '\t')
+			flag = 1;
+		// if not a space, and flag is 1, write three spaces
+		// then bring the flag back to 0 and write the character
+		// increment i
+		if (!(str[i] == ' ' || str[i] == '\t'))
+		{
+			if (flag == 1)
+				write(1, "   ", 3);
+			flag = 0;
+			write(1, &str[i], 1);
+		}
 		i++;
 	}
-	return (0);
 }
 
+int	main(int argc, char *argv[])
+{
+	// only execute the function with the correct number of arguments
+	if (argc == 2)
+		expand_str(argv[1]);
+	// write a new line in any case
+	write(1, "\n", 1);
+	return (0);
+}
