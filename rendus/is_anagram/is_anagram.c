@@ -40,7 +40,7 @@ int	is_anagram(char *s1, char *s2)
 	while (s1[i])
 	{
 		if (s1[i] != "\n")
-			return (1)
+			return (1);
 	}
 	return (0);
 }
